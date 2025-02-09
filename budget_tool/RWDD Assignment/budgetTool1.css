@@ -1,0 +1,276 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh; 
+  }
+  
+
+  header {
+    width: 250px; 
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  header nav {
+    width: 100%;
+  }
+  
+  header nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  header nav a:hover,
+  header nav a.active {
+    background-color: #0056b3;
+  }
+  
+  /* Main Content Styling */
+  main {
+    flex: 1; 
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  main h2 {
+    margin-top: 0;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  form label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  form input,
+  form select,
+  form button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh; 
+  }
+  
+
+  header {
+    width: 250px; 
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  header nav {
+    width: 100%;
+  }
+  
+  header nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  header nav a:hover,
+  header nav a.active {
+    background-color: #0056b3;
+  }
+  
+
+  main {
+    flex: 1; 
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  main h2 {
+    margin-top: 0;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  form label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  form input,
+  form select,
+  form button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Ensures header stays on top */
+    min-height: 100vh;
+  }
+  
+  /* Header styling */
+  header {
+    display: flex;
+    flex-direction: row; /* Arrange logo and nav links horizontally */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .vertical-nav {
+    display: flex;
+    flex-direction: column; /* Ensure links are vertical */
+    gap: 10px;
+  }
+  
+  /* Content Layout */
+  main {
+    display: flex;
+    flex: 1; /* Ensures it stretches to fill available space */
+    flex-direction: row; /* Arrange navigation and main content side by side */
+    margin: 20px;
+  }
+  
+  /* Navigation section styling */
+  nav.vertical-nav {
+    width: 200px; /* Sidebar width */
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  nav.vertical-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav.vertical-nav li {
+    margin: 10px 0;
+  }
+  
+  nav.vertical-nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 5px;
+  }
+  
+  nav.vertical-nav a.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  nav.vertical-nav a:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  /* Main content styling */
+  section {
+    flex: 1; /* Ensures it fills available space next to the sidebar */
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
