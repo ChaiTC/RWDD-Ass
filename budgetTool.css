@@ -1,189 +1,285 @@
-/* Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  display: flex;
-  background-color: #f4f4f4;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background: #2c3e50;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sidebar .logo-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sidebar .logo-container img {
-  width: 80px;
-  height: auto;
-}
-
-.sidebar h1 {
-  font-size: 18px;
-  text-transform: uppercase;
-}
-
-.sidebar ul {
-  list-style: none;
-  width: 100%;
-}
-
-.sidebar ul li {
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  width: 100%;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.sidebar ul li:hover {
-  background: #34495e;
-}
-
-.sidebar ul li img {
-  width: 24px;
-  margin-right: 10px;
-}
-
-/* Main Content */
-.content {
-  margin-left: 260px;
-  padding: 20px;
-  width: calc(100% - 260px);
-}
-
-/* Header */
-header {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 15px 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-header .logo {
-  display: flex;
-  align-items: center;
-}
-
-header .logo img {
-  width: 50px;
-  margin-right: 10px;
-}
-
-/* Main Sections */
-main {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-  color: #333;
-}
-
-/* Forms */
-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form label {
-  display: block;
-  font-weight: bold;
-  margin: 10px 0 5px;
-}
-
-form input, form select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-form button:hover {
-  background: #219150;
-}
-
-/* Summary Section */
-div {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-p {
-  font-size: 16px;
-}
-
-
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #2c3e50;
-  color: white;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
+  /* === Global Styles === */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
   }
-  
+
+  body {
+    display: flex;
+    background-color: #f4f4f4;
+  }
+
+  /* === Sidebar Styles === */
+  .sidebar {
+    width: 280px;
+    height: 100vh;
+    background: rgb(191, 255, 235);
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .sidebar .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar .logo-container img {
+    width: 80px;
+  }
+
+  .sidebar h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
   .sidebar ul {
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
+    list-style: none;
+    width: 100%;
   }
 
   .sidebar ul li {
-      padding: 10px;
+    font-size: 18px;
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Fixes alignment issue */
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s;
   }
 
+  .sidebar ul li:hover {
+    background: #00ffee;
+    color: black;
+  }
+
+  .sidebar ul li img {
+    width: 24px;
+    margin-right: 10px;
+  }
+
+  /* === Main Content Area === */
   .content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 280px);
+    max-width: 800px;
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  /* === Header Styles === */
+  header {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  header .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  header .logo img {
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  /* === Main Sections (Stacked Layout) === */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+  }
+
+  /* === Form & Summary Sections === */
+  .form-container,
+  .summary-box,
+  .spending-tips {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px; /* Add space between sections */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* === Forms Styling === */
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  form input, 
+  form select, 
+  form button {
+    font-size: 18px;
+    padding: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  form button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 20px;
+    padding: 16px;
+    font-weight: bold;
+  }
+  .form-container h2 {
+    font-size: 24px; /* Make section titles larger */
+    margin-bottom: 20px; /* Add space below titles */
+  }
+
+  form button:hover {
+    background: #219150;
+  }
+
+  /* Budget Summary Box */
+.summary-box {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.summary-box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item.balance {
+  background: #1a2c4f;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Spending Tips Box */
+.tips-box {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.tips-box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.tips-box p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Ensure Both Boxes Have Same Width & Center Alignment */
+.summary-box,
+.tips-box {
+  width: 300px; /* Make both the same size */
+  margin: 20px auto; /* Center them horizontally */
+  padding: 20px; /* Increase padding for better spacing */
+}
+
+/* Adjust Summary Box Title */
+.summary-box h3,
+.tips-box h3 {
+  text-align: center; /* Ensure headings are centered */
+}
+
+/* Adjust Content Spacing */
+.summary-item,
+.tips-box p {
+  text-align: center;
+  padding: 10px 0;
+}
+
+  /* === Footer === */
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: rgb(191, 255, 235);
+    color: black;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /* === Mobile Sidebar Fix === */
+  @media (max-width: 768px) {
+    .sidebar {
+      left: -280px;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .content {
       margin-left: 0;
       width: 100%;
+    }
   }
-}
+
+  /* === Mobile Menu Button === */
+  .menu-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #27ae60;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .menu-btn:hover {
+    background: #219150;
+  }

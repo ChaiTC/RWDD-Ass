@@ -1,19 +1,27 @@
 <?php
+session_start();
 include 'connection.php';
+include 'header.php';
+include 'sidebar.php';
 
-// Fetch Total Income
-$incomeQuery = "SELECT SUM(income_amount) FROM user_income";
+// Ensure database connection is established
+if (!$connection) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+
+// Fetch total income
+$incomeQuery = "SELECT SUM(income_amount) AS total_income FROM user_income";
 $incomeResult = mysqli_query($connection, $incomeQuery);
-$incomeRow = mysqli_fetch_array($incomeResult);
-$totalIncome = $incomeRow[0] ? $incomeRow[0] : 0;
+$incomeRow = mysqli_fetch_assoc($incomeResult);
+$totalIncome = $incomeRow['total_income'] ?? 0;
 
-// Fetch Total Expenses
-$expenseQuery = "SELECT SUM(amount) FROM user_expenses_table";
+// Fetch total expenses
+$expenseQuery = "SELECT SUM(amount) AS total_expenses FROM user_expenses_table";
 $expenseResult = mysqli_query($connection, $expenseQuery);
-$expenseRow = mysqli_fetch_array($expenseResult);
-$totalExpenses = $expenseRow[0] ? $expenseRow[0] : 0;
+$expenseRow = mysqli_fetch_assoc($expenseResult);
+$totalExpenses = $expenseRow['total_expenses'] ?? 0;
 
-// Calculate Balance
+// Calculate balance
 $balance = $totalIncome - $totalExpenses;
 ?>
 
@@ -41,73 +49,85 @@ $balance = $totalIncome - $totalExpenses;
         </ul>
     </div>
 
-    <!-- Main Content Wrapper -->
     <div class="content">
-        <header>
-            <div class="logo">
-                <img src="RWDD.png" alt="App Logo">
-                <h1>Budget Tool</h1>
-            </div>
-        </header>
-
         <main>
-            <h1>Your Monthly Budget</h1>
-            <p>Track your income and expenses to better manage your finances.</p>
+            <div class="container">
+                <h1>Your Monthly Budget</h1>
+                <p>Track your income and expenses to better manage your finances.</p>
 
-            <!-- Income Input -->
-            <form action="save_income.php" method="POST">
-                <h2>Enter Income</h2>
-                <label for="income">Amount:</label>
-                <input type="number" id="income" name="income" required>
+                <!-- Income Form -->
+                <div class="form-container">
+                    <h2>Enter Income</h2>
+                    <form action="save_income.php" method="POST">
+                        <label for="income">Amount:</label>
+                        <input type="number" id="income" name="income" required>
 
-                <label for="income_frequency">Income Frequency:</label>
-                <select id="income_frequency" name="income_frequency" required>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Weekly">Weekly</option>
-                </select>
+                        <label for="income_frequency">Income Frequency:</label>
+                        <select id="income_frequency" name="income_frequency" required>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Weekly">Weekly</option>
+                        </select>
 
-                <button type="submit">Save Income</button>
-            </form>
+                        <button type="submit">Save Income</button>
+                    </form>
+                </div>
 
-            <form action="save_expenses.php" method="POST">
-                <h2>Add Expense</h2>
-                <label for="category">Category:</label>
-                <select id="category" name="category_id">
-                    <option value="1">Food</option>
-                    <option value="2">Transport</option>
-                    <option value="3">Entertainment</option>
-                </select>
+                <!-- Expense Form -->
+                <div class="form-container">
+                    <h2>Add Expense</h2>
+                    <form action="save_expenses.php" method="POST">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category_id" required>
+                            <option value="1">Food</option>
+                            <option value="2">Transport</option>
+                            <option value="3">Entertainment</option>
+                        </select>
 
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" required>
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" required>
 
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" required>
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description" required>
 
-                <button type="submit">Add Expense</button>
-            </form>
+                        <button type="submit">Add Expense</button>
+                    </form>
+                </div>
 
-            <!-- Summary Section -->
-            <div>
-                <h2>Summary</h2>
-                <p>Total Income: RM <?php echo $totalIncome; ?></p>
-                <p>Total Expenses: RM <?php echo $totalExpenses; ?></p>
-                <p>Balance: RM <?php echo $balance; ?></p>
-            </div>
+                <!-- Budget Summary & Spending Tips -->
+                <div class="summary-tips-container">
+                    <!-- Budget Summary Box -->
+                    <div class="summary-box">
+                        <h3>Your Progress <span>(monthly)</span></h3>
+                        <div class="summary-item">
+                            <span>Total Income</span>
+                            <span>RM <?php echo number_format($totalIncome, 2); ?></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Expenses</span>
+                            <span>RM <?php echo number_format($totalExpenses, 2); ?></span>
+                        </div>
+                        <div class="summary-item balance">
+                            <span>Balance</span>
+                            <span>RM <?php echo number_format($balance, 2); ?></span>
+                        </div>
+                    </div>
 
-            <div>
-                <h2>Spending Tips</h2>
-                <p id="tips">
-                    <?php include 'fetch_tips.php';?>
-                </p>
+                    <!-- Spending Tips Box -->
+                    <div class="tips-box">
+                        <h3>Smart Spending Tips</h3>
+                        <p id="tips">
+                            <?php include 'fetch_tips.php'; ?>
+                        </p>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <footer>
-            <p> 2025 Budget Tool </p>
-        </footer>
+        <!-- Mobile Menu Button -->
+        <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+
+        <?php include 'footer.php'; ?>
     </div>
 
-    <script src='budgetTool.js'></script>
 </body>
 </html>

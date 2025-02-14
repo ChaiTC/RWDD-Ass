@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tool</title>
+    <link rel="stylesheet" href="budgetTool.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="RWDD.png" alt="App Logo">
+        <h1>Budget Tool</h1>
+    </div>
+</header>
