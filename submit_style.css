@@ -1,0 +1,154 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    background-color: #f4f4f4;
+  }
+  
+  
+  /* Main Content */
+  .content {
+    margin-left: 260px;
+    padding: 20px;
+    width: calc(100% - 260px);
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  header .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  header .logo img {
+    width: 50px;
+    margin-right: 10px;
+  }
+  
+  /* Main Sections */
+  main {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    color: #333;
+  }
+  
+  /* Forms */
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  form label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+  }
+  
+  form input, form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  form button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  form button:hover {
+    background: #219150;
+  }
+  
+  /* Summary Section */
+  div {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: #2c3e50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  .main-content {
+    display: block !important; /* Ensure content is visible */
+    margin-left: 260px;
+    padding: 20px;
+    width: calc(100% - 260px);
+}
+
+p {
+    color: #333 !important;
+    font-size: 18px !important;
+}
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+  
+    .sidebar ul li {
+        padding: 10px;
+    }
+  
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+  }
+  .chart-container {
+    width: 300px;  /* Adjust width */
+    height: 300px; /* Adjust height */
+    margin: 20px auto; /* Center the chart */
+}
+
