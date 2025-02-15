@@ -1,6 +1,8 @@
 <?php
 // Include the database connection
 include 'connection.php';
+include 'sidebar.php';
+include 'header.php';
 
 // Fetch random questions from quiz_questions_table
 $sql = "SELECT * FROM quiz_questions_table ORDER BY RAND() LIMIT 5";
@@ -38,23 +40,11 @@ $connection->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Quiz</title>
-    <link rel="stylesheet" href="quiz_style.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="quiz_style.css"> 
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo-container">
-            <img src="RWDD.png" alt="App Logo">
-            <h1>Budget Tool</h1>
-        </div>
-        <ul>
-            <li><img src="home-icon.png" alt="Home"> <h1>HOME</h1></li>
-            <li><img src="quiz-icon.png" alt="Quiz"> <h1>QUIZ</h1></li>
-            <li><img src="budget-icon.png" alt="Budget Tool"> <h1>BUDGET TOOL</h1></li>
-            <li><img src="progress-icon.png" alt="Progress"> <h1>PROGRESS</h1></li>
-            <li><img src="tips-icon.png" alt="Tips"> <h1>TIPS</h1></li>
-        </ul>
-    </div>
+
 
     <div class="main-content">
         <h2>Quiz</h2>
@@ -84,3 +74,4 @@ $connection->close();
     <script src="quiz_script.js"></script> <!-- Link to external JavaScript -->
 </body>
 </html>
+
