@@ -1,20 +1,14 @@
 <?php
-include 'connection.php';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $income = isset($_POST["income"]) ? trim($_POST["income"]) : "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['income'])) {
-    $user_id = 1; // Assume logged-in user
-    $income_amount = floatval($_POST['income']);
-    $income_date = date('Y-m-d');
+    error_log("Received income: " . $income); // Logs received income
+    error_log("Type of income: " . gettype($income));
 
-    // Insert new record
-    $sql_insert = "INSERT INTO user_income (user_id, income_amount, income_date) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($connection, $sql_insert);
-    mysqli_stmt_bind_param($stmt, "ids", $user_id, $income_amount, $income_date);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    mysqli_close($connection);
-
-    header("Location: budgetTool.php");
-    exit();
+    if (!is_numeric($income) || floatval($income) <= 0) {
+        echo "Invalid income: $income"; // Debugging output
+    } else {
+        echo "success"; // Return success if valid
+    }
 }
 ?>

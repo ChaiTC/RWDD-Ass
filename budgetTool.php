@@ -1,15 +1,12 @@
 <?php
 session_start();
 include 'connection.php';
-include 'header.php';
 include 'sidebar.php';
 
-// Ensure database connection is established
 if (!$connection) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-// Fetch total income using prepared statement
 $incomeQuery = "SELECT SUM(income_amount) AS total_income FROM user_income";
 $incomeStmt = mysqli_prepare($connection, $incomeQuery);
 mysqli_stmt_execute($incomeStmt);
@@ -18,7 +15,6 @@ $incomeRow = mysqli_fetch_assoc($incomeResult);
 $totalIncome = $incomeRow['total_income'] ?? 0;
 mysqli_stmt_close($incomeStmt);
 
-// Fetch total expenses using prepared statement
 $expenseQuery = "SELECT SUM(amount) AS total_expenses FROM user_expenses_table";
 $expenseStmt = mysqli_prepare($connection, $expenseQuery);
 mysqli_stmt_execute($expenseStmt);
@@ -27,7 +23,6 @@ $expenseRow = mysqli_fetch_assoc($expenseResult);
 $totalExpenses = $expenseRow['total_expenses'] ?? 0;
 mysqli_stmt_close($expenseStmt);
 
-// Calculate balance
 $balance = $totalIncome - $totalExpenses;
 ?>
 
@@ -39,8 +34,10 @@ $balance = $totalIncome - $totalExpenses;
     <title>Budget Tool</title>
     <link rel="stylesheet" href="budgetTool.css">
 </head>
+
 <body>
-    <div class="sidebar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+    <div class="sidebar hidden">
         <div class="logo-container">
             <img src="RWDD.png" alt="App Logo">
             <h1>Budget Tool</h1>
@@ -52,26 +49,25 @@ $balance = $totalIncome - $totalExpenses;
             <li><img src="progress-icon.png" alt="Progress"> <h1>PROGRESS</h1></li>
             <li><img src="tips-icon.png" alt="Tips"> <h1>TIPS</h1></li>
         </ul>
+        
     </div>
 
     <div class="content">
         <main>
             <div class="container">
-                <h1>Your Monthly Budget</h1>
+                <h2>Your Monthly Budget</h2>
                 <p>Track your income and expenses to better manage your finances.</p>
 
-                <!-- Income Form -->
                 <div class="form-container">
                     <h2>Enter Income</h2>
                     <form action="save_income.php" method="POST">
                         <label for="income">Amount:</label>
                         <input type="number" id="income" name="income" required>
                         <button id="add-income" type="submit">Add Income</button>
-                        <button id="clear-income" type="submit" class="btn btn-danger">Clear Income</button>
+                        <button id="clear-income" type="button" class="btn btn-danger">Clear Income</button>
                     </form>
                 </div>
 
-                <!-- Expense Form -->
                 <div class="form-container">
                     <h2>Add Expense</h2>
                     <form action="save_expenses.php" method="POST">
@@ -89,12 +85,11 @@ $balance = $totalIncome - $totalExpenses;
                         <input type="text" id="description" name="description">
 
                         <button type="submit">Add Expense</button>
+                        <button id="clear-expense" type="button" class="btn btn-danger">Clear Expenses</button>
                     </form>
                 </div>
 
-                <!-- Budget Summary & Spending Tips -->
                 <div class="summary-tips-container">
-                    <!-- Budget Summary Box -->
                     <div class="summary-box">
                         <h3>Your Progress <span>(monthly)</span></h3>
                         <div class="summary-item">
@@ -111,7 +106,6 @@ $balance = $totalIncome - $totalExpenses;
                         </div>
                     </div>
 
-                    <!-- Spending Tips Box -->
                     <div class="tips-box">
                         <h3>Smart Spending Tips</h3>
                         <p id="tips">
@@ -122,8 +116,6 @@ $balance = $totalIncome - $totalExpenses;
             </div>
         </main>
 
-        <!-- Mobile Menu Button -->
-        <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
 
         <?php include 'footer.php'; ?>
     </div>
