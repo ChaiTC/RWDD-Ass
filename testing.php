@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-include 'header.php';
 include 'sidebar.php';
 
 // Ensure database connection is established
@@ -107,14 +106,6 @@ $balance = $totalIncome - $totalExpenses;
         <?php include 'footer.php'; ?>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
-
-    <script>
-        function toggleSidebar() {
-            document.querySelector(".sidebar").classList.toggle("active");
-        }
-    </script>
 </body>
 </html>
 
