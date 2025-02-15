@@ -9,17 +9,23 @@ if (!$connection) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-// Fetch total income
+// Fetch total income using prepared statement
 $incomeQuery = "SELECT SUM(income_amount) AS total_income FROM user_income";
-$incomeResult = mysqli_query($connection, $incomeQuery);
+$incomeStmt = mysqli_prepare($connection, $incomeQuery);
+mysqli_stmt_execute($incomeStmt);
+$incomeResult = mysqli_stmt_get_result($incomeStmt);
 $incomeRow = mysqli_fetch_assoc($incomeResult);
 $totalIncome = $incomeRow['total_income'] ?? 0;
+mysqli_stmt_close($incomeStmt);
 
-// Fetch total expenses
+// Fetch total expenses using prepared statement
 $expenseQuery = "SELECT SUM(amount) AS total_expenses FROM user_expenses_table";
-$expenseResult = mysqli_query($connection, $expenseQuery);
+$expenseStmt = mysqli_prepare($connection, $expenseQuery);
+mysqli_stmt_execute($expenseStmt);
+$expenseResult = mysqli_stmt_get_result($expenseStmt);
 $expenseRow = mysqli_fetch_assoc($expenseResult);
 $totalExpenses = $expenseRow['total_expenses'] ?? 0;
+mysqli_stmt_close($expenseStmt);
 
 // Calculate balance
 $balance = $totalIncome - $totalExpenses;
@@ -34,7 +40,6 @@ $balance = $totalIncome - $totalExpenses;
     <link rel="stylesheet" href="budgetTool.css">
 </head>
 <body>
-
     <div class="sidebar">
         <div class="logo-container">
             <img src="RWDD.png" alt="App Logo">
@@ -61,14 +66,8 @@ $balance = $totalIncome - $totalExpenses;
                     <form action="save_income.php" method="POST">
                         <label for="income">Amount:</label>
                         <input type="number" id="income" name="income" required>
-
-                        <label for="income_frequency">Income Frequency:</label>
-                        <select id="income_frequency" name="income_frequency" required>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
-                        </select>
-
-                        <button type="submit">Save Income</button>
+                        <button id="add-income" type="submit">Add Income</button>
+                        <button id="clear-income" type="submit" class="btn btn-danger">Clear Income</button>
                     </form>
                 </div>
 
@@ -87,7 +86,7 @@ $balance = $totalIncome - $totalExpenses;
                         <input type="number" id="amount" name="amount" required>
 
                         <label for="description">Description:</label>
-                        <input type="text" id="description" name="description" required>
+                        <input type="text" id="description" name="description">
 
                         <button type="submit">Add Expense</button>
                     </form>
@@ -100,15 +99,15 @@ $balance = $totalIncome - $totalExpenses;
                         <h3>Your Progress <span>(monthly)</span></h3>
                         <div class="summary-item">
                             <span>Total Income</span>
-                            <span>RM <?php echo number_format($totalIncome, 2); ?></span>
+                            <span>RM <?php echo number_format((float)$totalIncome, 2); ?></span>
                         </div>
                         <div class="summary-item">
                             <span>Total Expenses</span>
-                            <span>RM <?php echo number_format($totalExpenses, 2); ?></span>
+                            <span>RM <?php echo number_format((float)$totalExpenses, 2); ?></span>
                         </div>
                         <div class="summary-item balance">
                             <span>Balance</span>
-                            <span>RM <?php echo number_format($balance, 2); ?></span>
+                            <span>RM <?php echo number_format((float)$balance, 2); ?></span>
                         </div>
                     </div>
 

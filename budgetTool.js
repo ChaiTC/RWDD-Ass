@@ -1,107 +1,118 @@
-var totalIncome = 0;
-var totalExpenses = 0;
+var totalIncome = 0, totalExpenses = 0;
 
-// Fetch latest income from database
+// Fetch and update income
 function fetchIncome() {
-  fetch('fetch_income.php')
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(data) {
-      totalIncome = parseFloat(data) || 0;
-      updateSummary();
-    })
-    .catch(function(error) {
-      console.error('Error fetching income:', error);
-    });
+    fetch("fetch_income.php")
+        .then(response => response.text())
+        .then(data => {
+            totalIncome = parseFloat(data) || 0;
+            updateUI("total-income", totalIncome);
+            updateSummary();
+        })
+        .catch(error => console.error("Error fetching income:", error));
 }
 
-// Fetch total expenses from database
+// Fetch and update expenses
 function fetchExpenses() {
-  fetch('fetch_expenses.php')
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(data) {
-      totalExpenses = parseFloat(data) || 0;
-      updateSummary();
-    })
-    .catch(function(error) {
-      console.error('Error fetching expenses:', error);
-    });
+    fetch("fetch_expenses.php")
+        .then(response => response.text())
+        .then(data => {
+            totalExpenses = parseFloat(data) || 0;
+            updateUI("total-expenses", totalExpenses);
+            updateSummary();
+        })
+        .catch(error => console.error("Error fetching expenses:", error));
 }
 
-// Function to update the summary
+// Update balance and tips
 function updateSummary() {
-  var balance = totalIncome - totalExpenses;
+    let balance = totalIncome - totalExpenses;
+    updateUI("balance", balance);
 
-  document.getElementById('total-income').textContent = totalIncome.toFixed(2);
-  document.getElementById('total-expenses').textContent = totalExpenses.toFixed(2);
-  document.getElementById('balance').textContent = balance.toFixed(2);
-
-  var tipsElement = document.getElementById('tips');
-  if (balance < 0) {
-    tipsElement.textContent = 'Your expenses exceed your income! Consider cutting down unnecessary expenses.';
-  } else if (balance <= 1000) {
-    tipsElement.textContent = 'You have a balanced budget. Ensure to save some income for future goals!';
-  } else {
-    tipsElement.textContent = 'Great job! Keep saving and maintaining a positive balance!';
-  }
+    let tips = balance < 0 ? 
+        "Your expenses exceed your income! Consider cutting down unnecessary expenses." :
+        balance <= 1000 ? 
+        "You have a balanced budget. Ensure to save some income for future goals!" :
+        "Great job! Keep saving and maintaining a positive balance!";
+    
+    document.getElementById("tips").textContent = tips;
 }
 
-// Add income (updates DB instead of adding locally)
-document.getElementById('add-income').addEventListener('click', function() {
-  var incomeInput = document.getElementById('income-amount');
-  var income = parseFloat(incomeInput.value);
-
-  if (!isNaN(income) && income > 0) {
-    fetch('save_income.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'income=' + income + '&income_frequency=Monthly'
-    })
-    .then(function(response) {
-      if (response.ok) {
-        fetchIncome(); // Refresh the income display
-        incomeInput.value = '';
-      } else {
-        alert('Error saving income.');
-      }
-    });
-  } else {
-    alert('Please enter a valid income amount.');
-  }
-});
-
-// Add expense (updates DB instead of adding locally)
-document.getElementById('add-expense').addEventListener('click', function() {
-  var expenseInput = document.getElementById('expense-amount');
-  var expense = parseFloat(expenseInput.value);
-
-  if (!isNaN(expense) && expense > 0) {
-    fetch('save_expense.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'expense=' + expense
-    })
-    .then(function(response) {
-      if (response.ok) {
-        fetchExpenses(); // Refresh the expense display
-        expenseInput.value = '';
-      } else {
-        alert('Error saving expense.');
-      }
-    });
-  } else {
-    alert('Please enter a valid expense amount.');
-  }
-});
-
-// Sidebar toggle function
-function toggleSidebar() {
-  document.querySelector('.sidebar').classList.toggle('open');
+// Helper function to update UI elements
+function updateUI(id, value) {
+    document.getElementById(id).textContent = value.toFixed(2);
 }
 
-// Fetch initial data on page load
+// Handle adding income
+function addIncome() {
+    let income = parseFloat(document.getElementById("income_amount").value);
+    if (isNaN(income) || income <= 0) return alert("Please enter a valid income amount.");
+
+    fetch("save_income.php", {
+        method: "POST",
+        body: `income=${income}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === "success") {
+            fetchIncome();
+            document.getElementById("income_amount").value = "";
+        } else {
+            alert("Error: " + data);
+        }
+    })
+}
+
+// Handle clearing income
+function clearIncome() {
+    if (!confirm("Are you sure you want to clear your income?")) return;
+
+    fetch("clear_income.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === "success") {
+            alert("Income cleared successfully!");
+            updateUI("total-income", 0);
+            updateSummary();
+        } else {
+            alert("Error: " + data);
+        }
+    })
+    .catch(error => console.error("Fetch error:", error));
+}
+
+// Handle adding expenses
+function addExpense() {
+    let expense = parseFloat(document.getElementById("expense-amount").value);
+    if (isNaN(expense) || expense <= 0) return alert("Please enter a valid expense amount.");
+
+    fetch("save_expense.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `expense=${expense}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === "success") {
+            fetchExpenses();
+            document.getElementById("expense-amount").value = "";
+        } else {
+            alert("Error: " + data);
+        }
+    })
+    .catch(error => console.error("Fetch error:", error));
+}
+
+// Attach event listeners when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("add-income")?.addEventListener("click", addIncome);
+    document.getElementById("clear-income")?.addEventListener("click", clearIncome);
+    document.getElementById("add-expense")?.addEventListener("click", addExpense);
+});
+
+// Fetch initial data
 fetchIncome();
 fetchExpenses();

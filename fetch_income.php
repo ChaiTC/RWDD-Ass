@@ -1,24 +1,12 @@
 <?php
 include 'connection.php';
 
-$userID = 1;
-$sql = "SELECT income_amount, income_frequency FROM user_income WHERE user_id = $userID";
+$user_id = 1;
+$sql = "SELECT SUM(income_amount) AS total_income FROM user_income WHERE user_id = $user_id";
 $result = mysqli_query($connection, $sql);
+$row = mysqli_fetch_assoc($result);
 
-$totalIncome = 0;
-
-while ($row = mysqli_fetch_assoc($result)) {
-    $income = floatval($row['income_amount']);
-    $frequency = trim($row['income_frequency']); 
-
-    if ($frequency == "weekly") { 
-        $income *= 4;
-    }
-
-    $totalIncome += $income;
-}
-
-echo number_format($totalIncome, 2, '.', '');
+echo number_format($row['total_income'], 2, '.', '');
 
 mysqli_close($connection);
 ?>
