@@ -35,19 +35,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showQuestion(currentIndex);
 
-    // Change color when option is selected
+    // Option selection styling
     document.querySelectorAll(".option-input").forEach((input) => {
         input.addEventListener("change", function () {
-            document.querySelectorAll(`input[name="${this.name}"] + .option-text`).forEach((label) => {
-                label.style.background = "#f1f1f1";
-                label.style.color = "black";
+            document.querySelectorAll(`input[name="${this.name}"]`).forEach((radio) => {
+                radio.closest("label").style.background = "#f1f1f1";
+                radio.closest("label").style.color = "black";
             });
-            this.nextElementSibling.style.background = "#3498db";
-            this.nextElementSibling.style.color = "white";
+
+            this.closest("label").style.background = "#3498db";
+            this.closest("label").style.color = "white";
         });
     });
+
+    // Sidebar toggle functionality
+    document.querySelector(".menu-btn").addEventListener("click", toggleSidebar);
 });
 
-
-
-
+function toggleSidebar() {
+    document.querySelector(".sidebar").classList.toggle("hidden");
+}

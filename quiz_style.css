@@ -9,11 +9,14 @@ body {
 .main-content {
     flex: 1;
     padding: 20px;
+    margin-left: 260px; /* Ensure content is not hidden behind the sidebar */
+    padding: 20px;
 }
 
 h2 {
     color: #333;
 }
+
 
 /* Quiz Form */
 form {

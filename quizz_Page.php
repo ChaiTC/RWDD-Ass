@@ -2,7 +2,6 @@
 // Include the database connection
 include 'connection.php';
 include 'sidebar.php';
-include 'header.php';
 
 // Fetch random questions from quiz_questions_table
 $sql = "SELECT * FROM quiz_questions_table ORDER BY RAND() LIMIT 5";
@@ -40,11 +39,12 @@ $connection->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="quiz_style.css"> 
 </head>
 <body>
-
-
+    <?php include 'sidebar.php'; ?>
+    <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
 
     <div class="main-content">
         <h2>Quiz</h2>
@@ -74,4 +74,3 @@ $connection->close();
     <script src="quiz_script.js"></script> <!-- Link to external JavaScript -->
 </body>
 </html>
-
