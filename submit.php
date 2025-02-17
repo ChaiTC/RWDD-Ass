@@ -1,14 +1,22 @@
 <?php
-// Include the database connection
+session_start();
 include 'connection.php';
+
+// Check if the user is logged in (assuming a session-based login system)
+if (!isset($_SESSION['user_id'])) {
+    die("User not logged in.");
+}
+
+$user_id = $_SESSION['user_id'];
+$score = 0;
+$total_questions = 0;
+$correct_answers = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['answer'])) {
     $user_answers = $_POST['answer'];
-    $score = 0;
     $total_questions = count($user_answers);
-    $correct_answers = [];
 
-    // Fetch correct answers
+    // Fetch correct answers from database
     $question_ids = implode(',', array_keys($user_answers));
     $sql = "SELECT * FROM quiz_option_table WHERE question_id IN ($question_ids) AND is_correct = 1";
     $result = $connection->query($sql);
@@ -28,10 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['answer'])) {
 
     // Calculate percentage
     $percentage = ($total_questions > 0) ? ($score / $total_questions) * 100 : 0;
-} else {
-    $score = 0;
-    $percentage = 0;
-    $total_questions = 0;
+
+    // Save result to database
+    $stmt = $connection->prepare("INSERT INTO quiz_result_table (user_id, total_score, result_date) VALUES (?, ?, NOW())");
+    $stmt->bind_param("ii", $user_id, $score);
+    $stmt->execute();
+    $stmt->close();
 }
 
 $connection->close();
@@ -80,6 +90,7 @@ $connection->close();
 
 </body>
 </html>
+
 
 
 
