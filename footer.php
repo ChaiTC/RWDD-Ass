@@ -1,8 +1,4 @@
 <footer>
-    <p> 2025 Budget Tool </p>
-</footer>
-<script src='budgetTool.js'></script>
-<footer>
     <div class="footer-container">
         <p>2025 Budget Tool</p>
         <div class="footer-links">

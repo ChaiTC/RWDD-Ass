@@ -1,4 +1,3 @@
-// Toggling the sidebar visibility by adding/removing the 'active' class
 function toggleSidebar() {
     const sidebar = document.querySelector(".sidebar");
     if (sidebar) {

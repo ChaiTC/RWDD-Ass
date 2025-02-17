@@ -39,6 +39,7 @@ $connection->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Quiz</title>
     <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="quiz_style.css"> 
 </head>
 <body>
@@ -71,9 +72,11 @@ $connection->close();
         <?php else: ?>
             <p>No quiz questions available. Please try again later.</p>
         <?php endif; ?>
+        <?php include 'footer.php'; ?>
     </div>
 
 <script src="quiz_script.js"></script> 
 <script src="sidebar.js"></script> 
+
 </body>
 </html>
