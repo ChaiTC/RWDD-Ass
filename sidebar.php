@@ -13,7 +13,7 @@
 
       
 
-        <li><a href="progress.html"><img src="progress-icon.png" alt="Progress"> <span>PROGRESS</span></a></li>
+        <li><a href="progress.php"><img src="progress-icon.png" alt="Progress"> <span>PROGRESS</span></a></li>
         <li><a href="financial_tips.php"><img src="tips-icon.png" alt="Tips"> <span>TIPS</span></a></li>
     </ul>
 </div>

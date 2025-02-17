@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-include 'sidebar.php';
 
 // Ensure database connection is established
 if (!$connection) {
@@ -49,6 +48,7 @@ $balance = $totalIncome - $totalExpenses;
     <link rel="stylesheet" href="budgetTool.css">
 </head>
 <body>
+    <?php include 'sidebar.php'; ?>
     <div class="content">
         <main>
             <div class="container">
@@ -101,9 +101,10 @@ $balance = $totalIncome - $totalExpenses;
                     </p>
                 </div>
             </div>
+            <?php include 'footer.php'; ?>
         </main>
-
-        <?php include 'footer.php'; ?>
+        <script src="sidebar.js"></script> 
+        <script src="financial_tips.js"></script>
     </div>
 
 </body>
