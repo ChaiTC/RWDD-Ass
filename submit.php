@@ -1,8 +1,6 @@
 <?php
 // Include the database connection
 include 'connection.php';
-include 'sidebar.php';
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['answer'])) {
     $user_answers = $_POST['answer'];
@@ -45,35 +43,43 @@ $connection->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
-    <link rel="stylesheet" href="submit_style.css"> 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Load Chart.js -->
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="submit_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h2>Quiz Results</h2>
-        <p>Total Questions: <strong><?php echo $total_questions; ?></strong></p>
-        <p>Correct Answers: <strong><?php echo $score; ?></strong></p>
-        <p>Score Percentage: <strong><?php echo round($percentage, 2); ?>%</strong></p>
+<?php include 'sidebar.php'; ?>
 
-        <!-- Chart Container -->
-        <div class="chart-container">
-            <canvas id="scoreChart"></canvas>
-        </div>
+<div class="main-content">
+    <h2>Quiz Results</h2>
+    <p>Total Questions: <strong><?php echo $total_questions; ?></strong></p>
+    <p>Correct Answers: <strong><?php echo $score; ?></strong></p>
+    <p>Score Percentage: <strong><?php echo round($percentage, 2); ?>%</strong></p>
 
-        <a href="quizz_Page.php">
-            <button class="retry-btn">Try Again</button>
-        </a>
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <canvas id="scoreChart"></canvas>
     </div>
 
-    <script src="submit_script.js"></script> <!-- Link to external JS -->
-    <script>
-        // Pass PHP variables to JavaScript
-        const score = <?php echo $score; ?>;
-        const totalQuestions = <?php echo $total_questions; ?>;
-    </script>
+    <a href="quiz_page.php">
+        <button class="retry-btn">Try Again</button>
+    </a>
+
+    <?php include 'footer.php'; ?>
+</div>
+
+<script src="submit_script.js"></script>
+<script>
+    // Pass PHP variables to JavaScript
+    const score = <?php echo $score; ?>;
+    const totalQuestions = <?php echo $total_questions; ?>;
+</script>
+<script src="sidebar.js"></script>
 
 </body>
 </html>
+
+
 
