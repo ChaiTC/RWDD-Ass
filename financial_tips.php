@@ -19,16 +19,19 @@
         <section id="educational-resources">
             <h2>Educational Resources Section</h2>
             <div class="resource-item">
+                <img src="budgeting.png" class="resource_image">
                 <div class="placeholder"></div>
                 <h3>Understanding Budgeting Basics</h3>
                 <p>Learn how to create a budget that works for you and your financial goals.</p>
             </div>
             <div class="resource-item">
+                <img src="retirement.png" class="resource_image">
                 <div class="placeholder"></div>
                 <h3>How to Save for Retirement</h3>
                 <p>Tips on setting up a retirement fund and making regular contributions.</p>
             </div>
             <div class="resource-item">
+                <img src="emergency_fund.png" class="resource_image">
                 <div class="placeholder"></div>
                 <h3>Building an Emergency Fund</h3>
                 <p>Understand the importance of having a safety net for unexpected expenses.</p>
@@ -55,7 +58,6 @@
         </section>
         <?php include 'footer.php'; ?>
     </main>
-
-<script src="sidebar.js"></script> 
+    <script src="sidebar.js"></script> 
 </body>
 </html>
