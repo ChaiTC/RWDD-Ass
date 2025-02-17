@@ -59,5 +59,6 @@
         <?php include 'footer.php'; ?>
     </main>
     <script src="sidebar.js"></script> 
+    <script src="test.js"></script>
 </body>
 </html>

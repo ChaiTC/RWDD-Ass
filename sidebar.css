@@ -33,8 +33,6 @@
   align-items: center;
   z-index: 3000; /* Ensures sidebar appears above main content */
   transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for both position and opacity */
-  visibility: hidden; /* Sidebar is invisible initially */
-  opacity: 0; /* Hidden initially */
 }
 
 /* Sidebar Visible */

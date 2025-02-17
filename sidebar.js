@@ -5,7 +5,9 @@ function toggleSidebar() {
     if (sidebar) {
         console.log("Toggling sidebar...");  // Debugging message
 
-        sidebar.classList.toggle("active");  // Toggle the 'active' class on the sidebar
+        // Toggle the 'active' class on the sidebar (this will show/hide it)
+        sidebar.classList.toggle("active");
+
         console.log("Sidebar class after toggle:", sidebar.classList);  // Check the class
 
     } else {
@@ -15,12 +17,11 @@ function toggleSidebar() {
 
 // Wait for the DOM to load before attaching event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".sidebar").classList.add("active");
-
     const menuBtn = document.querySelector(".menu-btn");
 
+    // Ensure the menu button exists before attaching the event listener
     if (menuBtn) {
-        console.log("Menu button clicked.");  // Debugging message
+        console.log("Menu button found.");  // Debugging message
         menuBtn.addEventListener("click", function () {
             toggleSidebar();  // Call toggleSidebar when the button is clicked
         });
