@@ -149,24 +149,24 @@ function clearExpenses() {
     .catch(error => console.error("Fetch error:", error));
 }
 
-function toggleSidebar() {
-  const sidebar = document.querySelector(".sidebar");
-  if (sidebar) {
-      sidebar.classList.toggle("hidden");
-  } else {
-      console.error("Sidebar not found.");
-  }
-}
+// function toggleSidebar() {
+//   const sidebar = document.querySelector(".sidebar");
+//   if (sidebar) {
+//       sidebar.classList.toggle("hidden");
+//   } else {
+//       console.error("Sidebar not found.");
+//   }
+// }
 
-// Attach event listeners when DOM is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  const menuBtn = document.querySelector(".menu-btn");
-  const sidebar = document.querySelector(".sidebar");
+// // Attach event listeners when DOM is loaded
+// document.addEventListener("DOMContentLoaded", function () {
+//   const menuBtn = document.querySelector(".menu-btn");
+//   const sidebar = document.querySelector(".sidebar");
 
-  menuBtn.addEventListener("click", function () {
-    sidebar.classList.toggle("active");
-  });
-});
+//   menuBtn.addEventListener("click", function () {
+//     sidebar.classList.toggle("active");
+//   });
+// });
 
     const addIncomeBtn = document.getElementById("add-income");
     if (addIncomeBtn) addIncomeBtn.addEventListener("click", addIncome);

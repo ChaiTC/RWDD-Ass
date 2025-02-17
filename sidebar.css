@@ -10,7 +10,7 @@
   font-size: 20px;
   border: none;
   cursor: pointer;
-  z-index: 2100; /* Ensure button is on top */
+  z-index: 3100; /* Ensures button stays on top */
   border-radius: 5px;
 }
 
@@ -22,7 +22,7 @@
 .sidebar {
   width: 280px;
   height: 100vh;
-  background: rgba(123, 255, 202, 0.95); /* Less transparency for better visibility */
+  background: rgba(123, 255, 202, 0.721);
   color: black;
   position: fixed;
   left: -280px; /* Sidebar hidden by default */
@@ -31,23 +31,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2500; /* Higher z-index to be above other content */
-  transition: left 0.3s ease-in-out;
+  z-index: 3000; /* Ensures sidebar appears above main content */
+  transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for both position and opacity */
+  visibility: hidden; /* Sidebar is invisible initially */
+  opacity: 0; /* Hidden initially */
 }
 
 /* Sidebar Visible */
 .sidebar.active {
-  left: 0;
+  left: 0; /* Move the sidebar into view */
+  visibility: visible; /* Make the sidebar visible */
+  opacity: 1; /* Full opacity */
 }
 
 /* Sidebar Logo */
 .sidebar .logo-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .sidebar .logo-container img {
-  width: 150px;
+  width: 200px;
 }
 
 /* Sidebar Menu */
@@ -55,6 +59,7 @@
   list-style: none;
   width: 100%;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar ul li {
@@ -62,23 +67,21 @@
 }
 
 .sidebar ul li a {
-  font-size: 14px; /* Increased size for readability */
-  padding: 12px 20px;
+  font-size: 14px;
+  padding: 15px;
   width: 100%;
   display: flex;
   align-items: center;
-  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s;
   color: black;
   text-decoration: none;
-  transition: background 0.3s;
 }
 
-.sidebar ul li a:hover {
+.sidebar ul li:hover {
   background: green;
-  color: white;
 }
 
-/* Sidebar Icons */
 .sidebar ul li img {
   width: 24px;
   margin-right: 10px;
@@ -91,10 +94,14 @@
   }
 
   .sidebar {
-    left: -280px;
+    left: -280px; /* Hidden on mobile by default */
+    visibility: hidden; /* Ensures it's hidden initially */
+    opacity: 0; /* Ensures it's transparent */
   }
 
   .sidebar.active {
     left: 0;
+    visibility: visible; /* Show the sidebar on mobile */
+    opacity: 1; /* Make the sidebar visible */
   }
 }

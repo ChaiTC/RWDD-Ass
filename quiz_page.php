@@ -17,8 +17,8 @@ if ($result->num_rows > 0) {
 }
 
 // Fetch corresponding options from quiz_option_table
-$question_ids = implode(',', array_keys($questions));
-if (!empty($question_ids)) {
+if (!empty($questions)) {
+    $question_ids = implode(',', array_map('intval', array_keys($questions)));
     $option_sql = "SELECT * FROM quiz_option_table WHERE question_id IN ($question_ids)";
     $option_result = $connection->query($option_sql);
 
@@ -41,23 +41,22 @@ $connection->close();
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="quiz_style.css"> 
 </head>
-<?php include 'sidebar.php'; ?>
 <body>
     <?php include 'sidebar.php'; ?>
-    <button class="menu-btn">☰ Menu</button>
-
     <div class="main-content">
         <h2>Quiz</h2>
+
+        <?php if (!empty($questions)): ?>
         <form action="submit.php" method="POST">
             <div id="quiz-container">
                 <?php $index = 0; ?>
                 <?php foreach ($questions as $question_id => $question): ?>
                     <div class="question" data-index="<?php echo $index; ?>" style="display: <?php echo $index === 0 ? 'block' : 'none'; ?>;">
-                        <p><strong><?php echo $question['question']; ?></strong></p>
+                        <p><strong><?php echo htmlspecialchars($question['question']); ?></strong></p>
                         <?php foreach ($question['options'] as $option): ?>
                             <label class="option-label">
-                                <input type="radio" name="answer[<?php echo $question_id; ?>]" value="<?php echo $option['option_id']; ?>" class="option-input">
-                                <span class="option-text"><?php echo $option['option_text']; ?></span>
+                                <input type="radio" name="answer[<?php echo $question_id; ?>]" value="<?php echo htmlspecialchars($option['option_id']); ?>" class="option-input">
+                                <span class="option-text"><?php echo htmlspecialchars($option['option_text']); ?></span>
                             </label>
                         <?php endforeach; ?>
                     </div>
@@ -69,9 +68,12 @@ $connection->close();
             <button type="button" id="next-btn">Next</button>
             <input type="submit" id="submit-btn" value="Submit" style="display: none;">
         </form>
+        <?php else: ?>
+            <p>No quiz questions available. Please try again later.</p>
+        <?php endif; ?>
     </div>
 
-    <script src="quiz_script.js"></script> 
-    <script src="sidebar.js"></script> 
+<script src="quiz_script.js"></script> 
+<script src="sidebar.js"></script> 
 </body>
 </html>
