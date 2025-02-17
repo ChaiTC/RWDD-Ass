@@ -2,7 +2,7 @@
 // Include the database connection
 include 'connection.php';
 include 'sidebar.php';
-include 'header.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['answer'])) {
     $user_answers = $_POST['answer'];

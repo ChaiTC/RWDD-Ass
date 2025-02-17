@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Change color when option is selected
     document.querySelectorAll(".option-input").forEach((input) => {
         input.addEventListener("change", function () {
-            document.querySelectorAll(`input[name="${this.name}"] + .option-text`).forEach((label) => {
+            document.querySelectorAll(input[name="${this.name}"] + .option-text).forEach((label) => {
                 label.style.background = "#f1f1f1";
                 label.style.color = "black";
             });
