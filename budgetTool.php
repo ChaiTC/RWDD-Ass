@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-include 'sidebar.php';
 
 if (!$connection) {
     die("Database connection failed: " . mysqli_connect_error());

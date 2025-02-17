@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
     const submitBtn = document.getElementById("submit-btn");
+    const menuBtn = document.querySelector(".menu-btn"); 
+    const sidebar = document.querySelector(".sidebar");
 
     let currentIndex = 0;
 
@@ -35,23 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showQuestion(currentIndex);
 
-    // Option selection styling
+    menuBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("active");
+
+    // Change color when option is selected
     document.querySelectorAll(".option-input").forEach((input) => {
         input.addEventListener("change", function () {
-            document.querySelectorAll(`input[name="${this.name}"]`).forEach((radio) => {
-                radio.closest("label").style.background = "#f1f1f1";
-                radio.closest("label").style.color = "black";
+            document.querySelectorAll(`input[name="${this.name}"] + .option-text`).forEach((label) => {
+                label.style.background = "#f1f1f1";
+                label.style.color = "black";
             });
-
-            this.closest("label").style.background = "#3498db";
-            this.closest("label").style.color = "white";
+            this.nextElementSibling.style.background = "#3498db";
+            this.nextElementSibling.style.color = "white";
         });
     });
-
-    // Sidebar toggle functionality
-    document.querySelector(".menu-btn").addEventListener("click", toggleSidebar);
 });
-
-function toggleSidebar() {
-    document.querySelector(".sidebar").classList.toggle("hidden");
-}
+});

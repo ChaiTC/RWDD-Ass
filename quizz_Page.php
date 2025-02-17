@@ -1,7 +1,6 @@
 <?php
 // Include the database connection
 include 'connection.php';
-include 'sidebar.php';
 
 // Fetch random questions from quiz_questions_table
 $sql = "SELECT * FROM quiz_questions_table ORDER BY RAND() LIMIT 5";
@@ -42,9 +41,10 @@ $connection->close();
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="quiz_style.css"> 
 </head>
+<?php include 'sidebar.php'; ?>
 <body>
     <?php include 'sidebar.php'; ?>
-    <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+    <button class="menu-btn">☰ Menu</button>
 
     <div class="main-content">
         <h2>Quiz</h2>
@@ -71,6 +71,7 @@ $connection->close();
         </form>
     </div>
 
-    <script src="quiz_script.js"></script> <!-- Link to external JavaScript -->
+    <script src="quiz_script.js"></script> 
+    <script src="sidebar.js"></script> 
 </body>
 </html>
