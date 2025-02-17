@@ -80,7 +80,3 @@ $connection->close();
 
 </body>
 </html>
-
-
-
-
