@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tips and Resources</title>
+    <link rel="stylesheet" href="financial_tips.css">
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="financial_tips.css">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
