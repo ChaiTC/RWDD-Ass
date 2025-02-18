@@ -42,6 +42,25 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-});
 
+    
+    function adjustForMobile() {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove("active"); // Close sidebar on small screens
+            document.body.style.flexDirection = "column"; // Stack elements vertically
+
+            if (retryBtn) {
+                retryBtn.style.width = "100%"; // Full-width button
+            }
+        } else {
+            document.body.style.flexDirection = "row"; // Default layout for larger screens
+        }
+    }
+
+    // Run on page load
+    adjustForMobile();
+
+    // Run on window resize
+    window.addEventListener("resize", adjustForMobile);
+});
 
