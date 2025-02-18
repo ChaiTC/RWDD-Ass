@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
         if (mysqli_query($connection, $sql)) {
             $_SESSION["username"] = $username; // ✅ Store username in session
-            header("Location: dashboard.html"); // ✅ Redirect to dashboard
+            header("Location: login.html"); // ✅ Redirect to dashboard
             exit();
         } else {
             // Show error and redirect
