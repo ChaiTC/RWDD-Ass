@@ -6,10 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash password
 
-    // Check if your database uses 'username' or 'name'
+    // Insert user into database
     $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-
-    if (mysqli_query($connection, $sql)) { // Use only $sql here
+    if (mysqli_query($connection, $sql)) {
         header("Location: login.html"); // Redirect to login page
         exit();
     } else {

@@ -108,6 +108,10 @@ $balance = $totalIncome - $totalExpenses;
         </footer>
     </div>
 
+    <div class="container">
+        <a href="logout.php">Logout</a>
+    </div>
+
     <script src='budgetTool.js'></script>
 </body>
 </html>
