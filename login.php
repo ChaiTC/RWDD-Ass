@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,10 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($password, $user['password'])) {
-            session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            header("Location: dashboard.html"); // Redirect to dashboard
+            header("Location: dashboard.html"); // ✅ Redirect to dashboard
             exit();
         } else {
             echo "Invalid password.";
