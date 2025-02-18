@@ -76,7 +76,7 @@ button:hover:not(:disabled) {
     background: #2980b9;
 }
 
-/* 🌟 Mobile Responsiveness */
+
 @media screen and (max-width: 768px) {
     body {
         flex-direction: column; /* Stack elements vertically */
