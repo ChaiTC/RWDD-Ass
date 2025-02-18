@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     margin: 0;
+    background-color: skyblue;
 }
 
 /* Main Content */
