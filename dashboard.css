@@ -4,10 +4,19 @@
     100% { background-position: 0% 50%; }
 }
 
+h2 {
+    font-size: 36px; /* Increase size of "Welcome to Budget Tool" */
+    font-weight: bold;
+}
+
+p {
+    font-size: 24px; /* Increase size of the description text */
+}
+
 body {
     background: linear-gradient(270deg, rgb(255, 149, 0), yellow, green, blue);
     background-size: 400% 400%;
-    animation: rainbow 10s infinite linear;
+    animation: rainbow 8s infinite linear;
 }
 
 
