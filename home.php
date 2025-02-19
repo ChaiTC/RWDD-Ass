@@ -24,7 +24,6 @@ include 'connection.php'; // Include database connection if needed
         <p>Manage your finances, track expenses, and stay on top of your budget efficiently.</p>
 
         <div class="home-buttons">
-            <a href="dashboard.html" class="btn">Go to Dashboard</a>
             <a href="quiz_page.php" class="btn">Take a Quiz</a>
         </div>
     </div>
