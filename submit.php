@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['answer'])) {
     $percentage = ($total_questions > 0) ? ($score / $total_questions) * 100 : 0;
 
     // Save result to database
-    $stmt = $connection->prepare("INSERT INTO quiz_result_table (user_id, total_score, result_date) VALUES (?, ?, NOW())");
+    $stmt = $connection->prepare("INSERT INTO quiz_results_table (user_id, total_score, result_date) VALUES (?, ?, NOW())");
     $stmt->bind_param("ii", $user_id, $score);
     $stmt->execute();
     $stmt->close();
