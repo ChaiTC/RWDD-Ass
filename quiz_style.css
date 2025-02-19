@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+    background-color: skyblue;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 260px; /* Ensure content is not hidden behind the sidebar */
+}
+
+/* Headings */
+h2 {
+    color: #333;
+}
+
+/* Quiz Form */
+form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Question Styling */
+.question {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Option Styling */
+.option-label {
+    display: block;
+    padding: 10px;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.option-input {
+    display: none;
+}
+
+.option-input:checked + .option-text {
+    background: #3498db;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Navigation Buttons */
+button, input[type="submit"] {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background: #2980b9;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .question {
+        font-size: 16px;
+    }
+
+    .option-label {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button, input[type="submit"] {
+        width: 100%; /* Full-width buttons for better UX */
+        font-size: 16px;
+    }
+}
+
+/* Smaller screens (phones) */
+@media screen and (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    .question {
+        font-size: 14px;
+    }
+
+    .option-label {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    button, input[type="submit"] {
+        font-size: 14px;
+    }
+}
