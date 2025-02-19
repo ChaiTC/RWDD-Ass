@@ -60,5 +60,6 @@
     </main>
     <script src="sidebar.js"></script> 
     <script src="financial_tips.js"></script>
+    
 </body>
 </html>

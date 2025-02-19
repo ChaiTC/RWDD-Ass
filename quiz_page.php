@@ -78,5 +78,6 @@ $connection->close();
 <script src="quiz_script.js"></script> 
 <script src="sidebar.js"></script> 
 
+
 </body>
 </html>
