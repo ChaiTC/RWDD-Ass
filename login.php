@@ -2,21 +2,29 @@
 session_start();
 include 'connection.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['register'])) {
-        // Registration Logic
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$error = ""; // Initialize error variable
 
-        $check_sql = "SELECT * FROM users WHERE name = '$name' OR email = '$email'";
-        $check_result = mysqli_query($connection, $check_sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['register']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+        // Registration Logic
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+        $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
+
+        $check_sql = "SELECT * FROM users WHERE name = ? OR email = ?";
+        $stmt = mysqli_prepare($connection, $check_sql);
+        mysqli_stmt_bind_param($stmt, "ss", $name, $email);
+        mysqli_stmt_execute($stmt);
+        $check_result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($check_result) > 0) {
             $error = "Error: name or email already exists. Please choose another.";
         } else {
-            $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
-            if (mysqli_query($connection, $sql)) {
+            $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            $stmt = mysqli_prepare($connection, $sql);
+            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $password);
+            
+            if (mysqli_stmt_execute($stmt)) {
                 $_SESSION["name"] = $name;
                 header("Location: login.php");
                 exit();
@@ -24,13 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Error: Registration failed. Try again.";
             }
         }
-    } elseif (isset($_POST['login'])) {
+    } elseif (isset($_POST['login']) && isset($_POST['name']) && isset($_POST['password'])) {
         // Login Logic
-        $name = $_POST['name'];
-        $password = $_POST['password'];
+        $name = trim($_POST['name']);
+        $password = trim($_POST['password']);
 
-        $sql = "SELECT * FROM users WHERE name = '$name'";
-        $result = mysqli_query($connection, $sql);
+        $sql = "SELECT * FROM users WHERE name = ?";
+        $stmt = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $name);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
         if ($result && mysqli_num_rows($result) > 0) {
             $user = mysqli_fetch_assoc($result);
@@ -66,11 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Login</h2>
         <?php if (!empty($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
         <form id="login-form" action="" method="POST">
-            <label for="name">name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="login-name">Name:</label>
+            <input type="text" id="login-name" name="name" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
 
             <button type="submit" name="login">Login</button>
         </form>
@@ -80,14 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container" id="register-container" style="display:none;">
         <h2>Register</h2>
         <form id="register-form" action="" method="POST">
-            <label for="name">name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="register-name">Name:</label>
+            <input type="text" id="register-name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" name="email" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" name="password" required>
 
             <button type="submit" name="register">Register</button>
         </form>
