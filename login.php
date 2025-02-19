@@ -2,7 +2,7 @@
 session_start();
 include 'connection.php';
 
-$error = ""; // Initialize error variable
+$error = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['register']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {

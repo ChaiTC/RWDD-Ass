@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php'; // Database connection
+include 'connection.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +15,12 @@ include 'connection.php'; // Database connection
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
-    <!-- Logo -->
+  
     <div class="logo">
         <img src="RWDD.png" alt="RWDD Logo">
     </div>
 
-    <!-- Sidebar -->
+   
     
 
     <div class="main-content">
@@ -34,7 +34,7 @@ include 'connection.php'; // Database connection
 
     <?php include 'footer.php'; ?>
 
-    <!-- Ensure the script is included **AFTER** the sidebar -->
+
     <script src="sidebar.js"></script>  
     <script src="home.js"></script>
 </body>

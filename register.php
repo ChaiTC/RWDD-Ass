@@ -4,7 +4,7 @@ include 'connection.php';
 
 if (\$_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset(\$_POST['register'])) {
-        // Registration Logic
+        
         \$username = \$_POST['username'];
         \$email = \$_POST['email'];
         \$password = password_hash(\$_POST['password'], PASSWORD_BCRYPT);
@@ -25,7 +25,7 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } else {
-        // Login Logic
+        
         \$username = \$_POST['username'];
         \$password = \$_POST['password'];
 
