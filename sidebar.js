@@ -6,10 +6,13 @@ function toggleSidebar() {
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuBtn = document.querySelector(".menu-btn");
 
     if (menuBtn) {
         menuBtn.addEventListener("click", toggleSidebar);
+    } else {
+        console.error("Menu button not found!");
     }
 });

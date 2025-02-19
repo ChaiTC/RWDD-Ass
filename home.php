@@ -1,23 +1,27 @@
 <?php
 session_start();
-include 'connection.php'; // Include database connection if needed
+include 'connection.php'; // Database connection
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <div class="logo">
-        <img src="RWDD.png" alt="RWDD Logo">
-    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Budget Tool</title>
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="home.css"> 
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <?php include 'sidebar.php'; ?> <!-- Sidebar Navigation -->
+    <?php include 'sidebar.php'; ?>
+    <!-- Logo -->
+    <div class="logo">
+        <img src="RWDD.png" alt="RWDD Logo">
+    </div>
+
+    <!-- Sidebar -->
+    
 
     <div class="main-content">
         <h2>Welcome to the Budget Tool</h2>
@@ -28,9 +32,10 @@ include 'connection.php'; // Include database connection if needed
         </div>
     </div>
 
-    <?php include 'footer.php'; ?> <!-- Footer Section -->
+    <?php include 'footer.php'; ?>
 
-    <script src="sidebar.js"></script> <!-- Sidebar JavaScript -->
+    <!-- Ensure the script is included **AFTER** the sidebar -->
+    <script src="sidebar.js"></script>  
+    <script src="home.js"></script>
 </body>
 </html>
-
