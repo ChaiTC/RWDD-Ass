@@ -2,28 +2,51 @@
 session_start();
 include 'connection.php';
 
-if (\$_SERVER["REQUEST_METHOD"] == "POST") {
-    \$name = \$_POST['name'];
-    \$password = \$_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['register'])) {
+        // Registration Logic
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    // Fetch user from database
-    \$sql = "SELECT * FROM users WHERE name = '\$name'";
-    \$result = mysqli_query(\$connection, \$sql);
+        $check_sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+        $check_result = mysqli_query($connection, $check_sql);
 
-    if (\$result && mysqli_num_rows(\$result) > 0) {
-        \$user = mysqli_fetch_assoc(\$result);
-        if (password_verify(\$password, \$user['password'])) {
-            \$_SESSION['user_id'] = \$user['id'];
-            \$_SESSION['name'] = \$user['name'];
-            header("Location: dashboard.php"); 
-            exit();
+        if (mysqli_num_rows($check_result) > 0) {
+            $error = "Error: Username or email already exists. Please choose another.";
         } else {
-            \$error = "Invalid password.";
+            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+            if (mysqli_query($connection, $sql)) {
+                $_SESSION["username"] = $username;
+                header("Location: login.php");
+                exit();
+            } else {
+                $error = "Error: Registration failed. Try again.";
+            }
         }
-    } else {
-        \$error = "User not found.";
+    } elseif (isset($_POST['login'])) {
+        // Login Logic
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($connection, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                $error = "Invalid password.";
+            }
+        } else {
+            $error = "User not found.";
+        }
     }
-    mysqli_close(\$connection);
+    mysqli_close($connection);
 }
 ?>
 
@@ -32,9 +55,8 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login & Register</title>
     <link rel="stylesheet" href="login&register_style.css">
-    <link rel="stylesheet" href="login_style.css">
 </head>
 <body>
     <div class="logo">
@@ -42,17 +64,45 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="container">
         <h2>Login</h2>
-        <?php if (!empty(\$error)) { echo "<p style='color:red;'>\$error</p>"; } ?>
-        <form id="login-form" action="login.php" method="POST">
-            <label for="name">Username:</label>
-            <input type="text" id="name" name="name" required>
+        <?php if (!empty($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
+        <form id="login-form" action="" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit" name="login">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+        <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a>.</p>
     </div>
+    
+    <div class="container" id="register-container" style="display:none;">
+        <h2>Register</h2>
+        <form id="register-form" action="" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" name="register">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a>.</p>
+    </div>
+
+    <script>
+        function showRegister() {
+            document.getElementById('register-container').style.display = 'block';
+            document.getElementById('login-form').parentElement.style.display = 'none';
+        }
+        function showLogin() {
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('login-form').parentElement.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
