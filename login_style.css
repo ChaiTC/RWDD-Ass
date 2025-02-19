@@ -1,4 +1,4 @@
-/* Reset default styles */
+
 body, h2, p, a, input, button {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@ body, h2, p, a, input, button {
     box-sizing: border-box;
 }
 
-/* Center everything */
+
 body {
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@ body {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
-/* Container styling */
+
 .container {
     background: white;
     padding: 20px;
@@ -25,7 +25,7 @@ body {
     width: 350px;
 }
 
-/* Form styles */
+
 form {
     display: flex;
     flex-direction: column;
@@ -76,3 +76,4 @@ a {
 a:hover {
     text-decoration: underline;
 }
+

@@ -1,11 +1,11 @@
-/* Reset default styles */
+
 body, h2, p, label, input, button {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Center everything */
+
 body {
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@ body {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
-/* Form container */
+
 .container {
     background: white;
     padding: 30px;
@@ -32,12 +32,12 @@ body {
     width: 350px; /* Adjust width */
 }
 
-/* Form title */
+
 h2 {
     margin-bottom: 20px;
 }
 
-/* Input fields */
+
 label {
     display: block;
     font-weight: bold;
@@ -52,7 +52,7 @@ input {
     border-radius: 5px;
 }
 
-/* Submit button */
+
 button {
     width: 100%;
     padding: 12px;
@@ -69,7 +69,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Login link */
+
 p {
     margin-top: 15px;
 }

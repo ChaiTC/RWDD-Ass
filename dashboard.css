@@ -5,12 +5,12 @@
 }
 
 h2 {
-    font-size: 36px; /* Increase size of "Welcome to Budget Tool" */
+    font-size: 36px; 
     font-weight: bold;
 }
 
 p {
-    font-size: 24px; /* Increase size of the description text */
+    font-size: 24px; 
 }
 
 body {
@@ -20,7 +20,7 @@ body {
 }
 
 
-/* Reset default styles */
+
 body, h2, p, a {
     margin: 0;
     padding: 0;
@@ -28,23 +28,23 @@ body, h2, p, a {
     color: rgb(255, 0, 0)
 }
 
-/* Center everything */
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full screen height */
+    height: 100vh; 
     background-color: #f4f4f4;
     position: relative;
 }
 
-/* Container styling */
+
 .container {
     text-align: center;
 }
 
-/* Button styles */
+
 a {
     display: inline-block;
     padding: 12px 24px;
@@ -55,7 +55,7 @@ a {
     transition: 0.3s;
 }
 
-/* Budget Tool Button (Above Login & Register) */
+
 a[href="budgetTool.php"] {
     background-color: #0d00ff;
     color: white;
