@@ -1,0 +1,68 @@
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h2 {
+    font-size: 36px; 
+    font-weight: bold;
+}
+
+p {
+    font-size: 24px; 
+}
+
+body {
+    background: linear-gradient(270deg, rgb(255, 149, 0), yellow, green, blue);
+    background-size: 400% 400%;
+    animation: rainbow 8s infinite linear;
+}
+
+
+
+
+.logo {
+    text-align: center;
+    margin-top: 20px; 
+}
+
+.logo img {
+    max-width: 400px; 
+    height: auto;
+}
+
+
+
+.main-content {
+    text-align: center;
+    padding: 50px;
+}
+
+.home-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007bff; 
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+    margin: 10px;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+body, h2, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: rgb(255, 0, 0)
+}
