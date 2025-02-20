@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     menuBtn.addEventListener("click", function () {
         sidebar.classList.toggle("active");
 
-    // Change color when option is selected
+
     document.querySelectorAll(".option-input").forEach((input) => {
         input.addEventListener("change", function () {
             document.querySelectorAll(`input[name="${this.name}"] + .option-text`).forEach((label) => {

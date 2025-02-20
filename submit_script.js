@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuBtn = document.querySelector(".menu-btn"); 
     const sidebar = document.querySelector(".sidebar");
 
-    // Retry button animation
+
     if (retryBtn) {
         retryBtn.addEventListener("click", function () {
             this.style.transform = "scale(0.95)";
@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Toggle sidebar on menu button click
+ 
     if (menuBtn && sidebar) {
         menuBtn.addEventListener("click", function () {
             sidebar.classList.toggle("active");
         });
     }
 
-    // Chart.js for displaying the result chart
+
     const ctx = document.getElementById('scoreChart').getContext('2d');
 
     new Chart(ctx, {
@@ -46,21 +46,21 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function adjustForMobile() {
         if (window.innerWidth <= 768) {
-            sidebar.classList.remove("active"); // Close sidebar on small screens
-            document.body.style.flexDirection = "column"; // Stack elements vertically
+            sidebar.classList.remove("active"); 
+            document.body.style.flexDirection = "column"; 
 
             if (retryBtn) {
-                retryBtn.style.width = "100%"; // Full-width button
+                retryBtn.style.width = "100%"; 
             }
         } else {
-            document.body.style.flexDirection = "row"; // Default layout for larger screens
+            document.body.style.flexDirection = "row"; 
         }
     }
 
-    // Run on page load
+
     adjustForMobile();
 
-    // Run on window resize
+
     window.addEventListener("resize", adjustForMobile);
 });
 
