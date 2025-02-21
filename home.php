@@ -20,9 +20,6 @@ include 'connection.php';
         <img src="RWDD.png" alt="RWDD Logo">
     </div>
 
-   
-    
-
     <div class="main-content">
         <h2>Welcome to the Budget Tool</h2>
         <p>Manage your finances, track expenses, and stay on top of your budget efficiently.</p>
@@ -33,7 +30,6 @@ include 'connection.php';
     </div>
 
     <?php include 'footer.php'; ?>
-
 
     <script src="sidebar.js"></script>  
     <script src="home.js"></script>
