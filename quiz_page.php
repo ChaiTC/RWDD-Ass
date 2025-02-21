@@ -1,8 +1,6 @@
 <?php
-// Include the database connection
 include 'connection.php';
 
-// Fetch random questions from quiz_questions_table
 $sql = "SELECT * FROM quiz_questions_table ORDER BY RAND() LIMIT 5";
 $result = $connection->query($sql);
 
@@ -16,7 +14,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Fetch corresponding options from quiz_option_table
 if (!empty($questions)) {
     $question_ids = implode(',', array_map('intval', array_keys($questions)));
     $option_sql = "SELECT * FROM quiz_option_table WHERE question_id IN ($question_ids)";

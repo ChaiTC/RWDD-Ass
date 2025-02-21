@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -6,26 +6,23 @@ body {
     background-color: skyblue;
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     padding: 20px;
-    margin-left: 260px; /* Ensure content is not hidden behind the sidebar */
+    margin-left: 260px; 
 }
 
-/* Headings */
+
 h2 {
     color: #333;
     text-align: center;
 }
 
-/* Quiz Result Display */
 p {
     font-size: 18px;
     text-align: center;
 }
 
-/* Result Box */
 .result-box {
     background: #f9f9f9;
     padding: 20px;
@@ -36,14 +33,12 @@ p {
     margin: 20px auto;
 }
 
-/* Chart Container */
 .chart-container {
     width: 80%;
     max-width: 500px;
     margin: 20px auto;
 }
 
-/* Retry Button */
 .retry-btn {
     display: block;
     width: 200px;
